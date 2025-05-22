@@ -11,6 +11,7 @@ import jakarta.mail.Transport;
 import jakarta.mail.internet.InternetAddress;
 import jakarta.mail.internet.MimeMessage;
 import java.util.Properties;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -55,9 +56,11 @@ public boolean sendEmail(String to, String tieuDe, String noiDung)
             Transport.send(message);
 
             System.out.println("Da gui email thanh cong toi: " + to);
+            JOptionPane.showMessageDialog(new MainFrame().getFrame(), "Gửi thành công email", "Thông báo", JOptionPane.INFORMATION_MESSAGE);
             return true;
         } catch (MessagingException e) {
             e.printStackTrace();
+            JOptionPane.showMessageDialog(new MainFrame().getFrame(), "Gửi thất bại email", "Có lỗi xảy ra", JOptionPane.ERROR_MESSAGE);
             return false;
         }
     }
@@ -68,9 +71,6 @@ public boolean sendEmail(String to, String tieuDe, String noiDung)
     public void setPass(String a)
     {
         password = a;
-    }
-    public static void main(String[] args) {
-        new Email().sendEmail("nvk12a4@gmail.com", "VUKHANH", "TEST");
     }
 }
 
